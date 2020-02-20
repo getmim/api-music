@@ -58,9 +58,9 @@ return [
             ],
             'apiMusicAlbumSingle' => [
                 'path' => [
-                    'value' => '/music/album/(:id)',
+                    'value' => '/music/album/(:identity)',
                     'params' => [
-                        'id' => 'number'
+                        'identity' => 'any'
                     ]
                 ],
                 'method' => 'GET',

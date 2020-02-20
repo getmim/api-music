@@ -18,7 +18,7 @@ class MusicController extends \Api\Controller
 
         list($page, $rpp) = $this->req->getPager();
 
-        $cond = [];
+        $cond = $this->req->getCond(['q']);
 
         $musics = Music::get($cond, $rpp, $page, ['id'=>false]) ?? [];
         if($musics)
@@ -27,6 +27,10 @@ class MusicController extends \Api\Controller
         foreach($musics as &$music){
             unset($music->meta);
             unset($music->content);
+            if($music->album){
+                unset($music->album->content);
+                unset($music->album->meta);
+            }
         }
         unset($music);
 
